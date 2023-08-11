@@ -9,7 +9,8 @@ import deletePost from './Controllers/deletePost';
 const router = express.Router();
 
 /* La autenticación es super basica, se me ocurren numerosas formas de mejorarla
-como usar JWT para las sesiones, hashear las constraseñas entre otras formas de aumentar la seguridad */
+como usar JWT para las sesiones, hashear las constraseñas entre otras formas de aumentar la seguridad 
+Generalmente modularizo todo, cuando es una aplicación mucho mas completa o por lo menos divido los Routers por Modelos, en este caso uno para Usuario y otro para Posteo*/
 
 // Ruta encargada de registrar un nuevo usuario, primero valida que no exista.
 router.post('/register', async (req, res) => {
