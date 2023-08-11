@@ -3,7 +3,7 @@ import { Users } from '../index';
 
 // Esta función define el modelo Post
 // Incluye los atributos post_id como clave primaria, user_id como clave foranea, title, text e image
-// El campo image tiene una imagen placeholder por defecto en caso de que el usuario no suba ninguna imagen.
+
 
 const Post = (sequelize: Sequelize) => {
   return sequelize.define('Post', {

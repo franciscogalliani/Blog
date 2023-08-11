@@ -12,7 +12,7 @@ Tambien se llama nuevamente a fetchPosts para actualizar y que el usuario no ten
 
 function CreatePost({ user_id, fetchPosts }) {
   const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png");
   const [post, setPost] = useState({
     title: "",
     text: "",
@@ -53,7 +53,7 @@ function CreatePost({ user_id, fetchPosts }) {
         );
         if (response.status === 200) {
           event.target.reset();
-          setImageUrl("");
+          setImageUrl("https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png");
         }
         fetchPosts(user_id);
       } else setError("Faltan completar campos");
@@ -92,6 +92,7 @@ function CreatePost({ user_id, fetchPosts }) {
             id="image"
             accept="image/*"
             onChange={handleImageChange}
+            className="pb-6"
           />
           {imageUrl && (
             <img

@@ -19,8 +19,11 @@ const getPosts = async (user_id: number, page: number) => {
 
     const posts = await Posts.findAll({
         where: {
-            user_id
+            user_id,
         },
+        order: [
+            ['post_id', 'DESC']
+        ],
         limit: pageSize,
         offset
     });
