@@ -1,8 +1,7 @@
 import { Users } from '../index';
 
 /* Esta función toma el usuario y la contraseña y los matchea con los registros de la base de datos
-En caso de no encontrar ningun usuario con esos parametro retorna true
-En caso de encontrar un usuario retorna false
+En caso de encontrarlo, retorna al usuario, de lo contrario retorna null
 */
 
 
@@ -14,8 +13,7 @@ const findUser = async (username: string, password: string) => {
         }
     })
     
-    if(!userFound) return true
-    return false;
+    return userFound
 };
 
 export default findUser;

@@ -15,8 +15,8 @@ como usar JWT para las sesiones, hashear las constraseñas entre otras formas de
 router.post('/register', async (req, res) => {
     try {
         const { user, password } = req.body;
-        
-        if(await findUser(user, password)) {
+        const userRegistered = await findUser(user, password)
+        if(!userRegistered) {
             await createUser(user, password);
             res.status(200).send('Usuario registrado con exito')
         } else throw new Error('Usuario ya registrado')
@@ -30,8 +30,10 @@ router.post('/login', async (req, res) => {
     try {
         const { user, password } = req.body;
         if(user && password) {
-            if(!await findUser(user, password)) res.status(200).send('Usuario logueado con exito')
-            else throw new Error('Credenciales invalidas')
+            const userLogged = await findUser(user, password)
+
+            if(userLogged) res.status(200).json(userLogged)
+            else throw new Error('Credenciales Invalidas')
         } else throw new Error('Los campos no pueden estar vacíos')
         
     } catch (error: any) {
@@ -58,8 +60,8 @@ router.post('/post', async (req, res) => {
 router.get('/post/:user_id', async (req, res) => {
     try {
         const { user_id } = req.params
-        const { page } = req.query
-
+        const { page = 0 } = req.query
+        
         const posts = await getPosts(Number(user_id), Number(page));
         if(posts.posts.length) res.status(200).json(posts);
         else throw new Error('No hay publicaciones')
